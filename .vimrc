@@ -16,11 +16,13 @@
 
 " Basics {
 	set nocompatible 		" must be first line
-	set background=dark     " Assume a dark background
+	"set background=dark      Assume a dark background
 " }
  
 " General {
 	filetype plugin indent on  	" Automatically detect file types.
+	set foldmethod=marker
+	set vb                      " visual bell
 	syntax on 					" syntax highlighting
 	set mouse=a					" automatically enable mouse usage
 	"set autochdir 				" always switch to the current file directory.. 
@@ -28,6 +30,7 @@
      "autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 	scriptencoding utf-8
 	set autowrite
+	set diffopt=filler,iwhite
 	set shortmess+=filmnrxoOtT     	" abbrev. of messages (avoids 'hit enter')
 	" set spell 		 	     	" spell checking on
 	
@@ -47,7 +50,7 @@
 " }
 
 " Vim UI {
-	color ir_black     	       		" load a colorscheme
+	colorscheme buttercream
 	set tabpagemax=15 				" only show 15 tabs
 	set showmode                   	" display the current mode
 
@@ -57,18 +60,21 @@
 
 	if has('cmdline_info')
 		set ruler                  	" show the ruler
-		set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
+		"set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) a ruler on steroids
+		set rulerformat=%33([col:\ %02v]\ \ line:\ \(%l\/%L\)%=%P%)
 		set showcmd                	" show partial commands in status line and
 									" selected characters/lines in visual mode
 	endif
 
 	if has('statusline')
-		set laststatus=1           	" show statusline only if there are > 1 windows
+		"set laststatus=1           	 show statusline only if there are > 1 windows
+		set laststatus=2
 		" Use the commented line if fugitive isn't installed
 		"set statusline=%<%f\ %=\:\b%n%y%m%r%w\ %l,%c%V\ %P " a statusline, also on steroids
 		set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 	endif
 
+	set noea                        " don't make windows equal size
 	set backspace=indent,eol,start 	" backspace for dummys
 	set linespace=0 				" No extra spaces between rows
 	set nu 							" Line numbers on
@@ -79,7 +85,7 @@
 	set ignorecase 					" case insensitive search
 	set smartcase 					" case sensitive when uc present
 	set wildmenu 					" show list instead of just completing
-	set wildmode=list:longest,full 	" comand <Tab> completion, list matches, then longest common part, then all.
+	set wildmode=list:longest,full 	" command <Tab> completion, list matches, then longest common part, then all.
 	set whichwrap=b,s,h,l,<,>,[,]	" backspace and cursor keys wrap to
 	set scrolljump=5 				" lines to scroll when cursor leaves screen
 	set scrolloff=3 				" minimum lines to keep above and below cursor
@@ -104,18 +110,18 @@
 	" Easier moving in tabs and windows
 	map <C-J> <C-W>j<C-W>_
 	map <C-K> <C-W>k<C-W>_
-	map <C-L> <C-W>l<C-W>_
+	"map <C-L> <C-W>l<C-W>_
 	map <C-H> <C-W>h<C-W>_
-	map <C-K> <C-W>k<C-W>_
-	map <S-H> gT
-	map <S-L> gt
+	"map <C-K> <C-W>k<C-W>_
+	map <C-H> gT
+	map <C-L> gt
 
 	" Stupid shift key fixes
 	map:W :w 						
 	map:WQ :wq
 	map:wQ :wq
 	map:Q :q
-	map:Tabe :tabe
+	"map:Tabe :tabe
 
 	" Yank from the cursor to the end of the line, to be consistent with C and D.
 	nnoremap Y y$
@@ -218,7 +224,11 @@
 	" GVIM- (here instead of .gvimrc)
 	if has('gui_running')
 		set guioptions-=T          	" remove the toolbar
+		set guioptions-=m
 		set lines=40               	" 40 lines of text instead of 24,
+		colorscheme jhlight
+		set mousehide
+		set guicursor=a:blinkwait60000-blinkon600-blinkoff300
 	endif
 " }
 
