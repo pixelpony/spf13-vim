@@ -121,10 +121,13 @@
 	map:WQ :wq
 	map:wQ :wq
 	map:Q :q
-	"map:Tabe :tabe
 
 	" Yank from the cursor to the end of the line, to be consistent with C and D.
 	nnoremap Y y$
+
+	" Shortcuts
+	" Change Working Directory to that of the current file
+    cmap cwd lcd %:p:h
 " }
 
 " Plugins {
@@ -218,6 +221,12 @@
 		au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
 	" }
 
+	" SnipMate {
+		" Setting the author var
+		let g:snips_author = 'Steve Francia <steve.francia@gmail.com>'
+		" Shortcut for reloading snippets, useful when developing
+		nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
+	" }
 " }
 
 " GUI Settings {
