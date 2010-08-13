@@ -133,7 +133,10 @@
 
 
 " Plugins {
-
+	" command-t {
+		nmap <silent> <C-f> :CommandT<CR>
+	" } 
+	"
 	" VCSCommand {
 		let b:VCSCommandMapPrefix=',v'
 		let b:VCSCommandVCSType='git'
