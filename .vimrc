@@ -1,11 +1,10 @@
 " Modeline and Notes {
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
-" 	This is the personal .vimrc file of Steve Francia.
-" 	While much of it is beneficial for general use, I would
-" 	recommend picking out the parts you want and understand.
+" 	This is the personal .vimrc file of Derek Odegard.
 "
-" 	You can find me at http://spf13.com
+" 	It is based on Steve Francia's .vimrc 
+" 	http://spf13.com
 " }
 
 " Setup Bundle Support {
@@ -16,7 +15,6 @@
 
 " Basics {
 	set nocompatible 		" must be first line
-	"set background=dark      Assume a dark background
 " }
  
 " General {
@@ -100,7 +98,7 @@
 	set shiftwidth=4               	" use indents of 4 spaces
 	set noexpandtab 	       		" tabs are tabs, not spaces
 	set tabstop=4 					" an indentation every four columns
-	"set matchpairs+=<:>            	" match, to be used with % 
+	set matchpairs+=<:>            	" match, to be used with % 
 	set pastetoggle=<F12>          	" pastetoggle (sane indentation on pastes)
 	"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 " }
@@ -129,6 +127,10 @@
 	" Change Working Directory to that of the current file
     cmap cwd lcd %:p:h
 " }
+
+
+
+
 
 " Plugins {
 
@@ -229,12 +231,18 @@
 	" }
 " }
 
+
+
+
+
 " GUI Settings {
 	" GVIM- (here instead of .gvimrc)
 	if has('gui_running')
 		set guioptions-=T          	" remove the toolbar
 		set guioptions-=m
-		set lines=40               	" 40 lines of text instead of 24,
+		"set lines=40               	" 40 lines of text instead of 24,
+		set lines=300 columns=300
+		winpos 0 0
 		colorscheme jhlight
 		set mousehide
 		set guicursor=a:blinkwait60000-blinkon600-blinkoff300
@@ -248,3 +256,5 @@
 	  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 	endif
 " }
+
+cd ~/apps/www
