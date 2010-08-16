@@ -103,14 +103,24 @@
 	"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 " }
 
+
+" File Types {
+
+augroup filetypedetect
+	au! BufRead,BufNewFile *.twig		setfiletype htmljinja
+	au! BufRead,BufNewFile *.less		setfiletype css
+augroup END
+
+" }
+
+
+
 " Key Mappings {
 
 	" Easier moving in tabs and windows
 	map <C-J> <C-W>j<C-W>_
 	map <C-K> <C-W>k<C-W>_
-	"map <C-L> <C-W>l<C-W>_
 	map <C-H> <C-W>h<C-W>_
-	"map <C-K> <C-W>k<C-W>_
 	map <C-H> gT
 	map <C-L> gt
 
@@ -129,18 +139,15 @@
 " }
 
 
-
-
-
 " Plugins {
+
+	" AutoCloseTag {
+		" Make it so AutoCloseTag works for xml and xhtml files as well
+		au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
+	" }
+
 	" command-t {
 		nmap <silent> <C-f> :CommandT<CR>
-	" } 
-	"
-	" VCSCommand {
-		let b:VCSCommandMapPrefix=',v'
-		let b:VCSCommandVCSType='git'
-		""let mapleader = "-"
 	" } 
 	
 	" PIV {
@@ -150,19 +157,6 @@
 	" Supertab {
 		"let g:SuperTabDefaultCompletionType = "context"
 		let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-	" }
-
-	" Misc { 
-		:map <C-F10> <Esc>:vsp<CR>:VTree<CR>
-		" map Control + F10 to Vtree
-
-		let g:checksyntax_auto = 0
-
-		"comment out line(s) in visual mode
-		vmap  o  :call NERDComment(1, 'toggle')<CR>
-		let g:NERDShutUp=1
-
-		let b:match_ignorecase = 1
 	" }
 
 	" ShowMarks {
@@ -179,64 +173,26 @@
 		highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 	" }
 	
-	" OmniComplete {
-		"if has("autocmd") && exists("+omnifunc")
-			"autocmd Filetype *
-				"\if &omnifunc == "" |
-				"\setlocal omnifunc=syntaxcomplete#Complete |
-				"\endif
-		"endif
-
-		" Popup menu hightLight Group
-		"highlight Pmenu 	ctermbg=13 	guibg=DarkBlue
-		highlight PmenuSel 	ctermbg=7 	guibg=DarkBlue 		guifg=LightBlue
-		"highlight PmenuSbar ctermbg=7 	guibg=DarkGray
-		"highlight PmenuThumb 			guibg=Black
-
-		hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-		hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-		hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
-
-		" some convenient mappings 
-		inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-		inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-		inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-		inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-		inoremap <expr> <C-d> 	   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-		inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-
-		" automatically open and close the popup menu / preview window
-		au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-		set completeopt=menu,longest,preview
-	" }
-	
 	" Ctags {
-		set tags=./tags;/	
+		"set tags=./tags;/	
+		let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+		map <S-F1> :TlistToggle<Enter>
 	" }
 
-	" Delimitmate {
-		au FileType * let b:delimitMate_autoclose = 1
+	" Misc { 
+		:map <C-F10> <Esc>:vsp<CR>:VTree<CR>
+		" map Control + F10 to Vtree
 
-		" If using html auto complete (complete closing tag)
-        au FileType xml,html,xhtml let b:delimitMate_matchpairs = "(:),[:],{:}"
-	" }
-	
-	" AutoCloseTag {
-		" Make it so AutoCloseTag works for xml and xhtml files as well
-		au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
+		let g:checksyntax_auto = 0
+
+		"comment out line(s) in visual mode
+		vmap  o  :call NERDComment(1, 'toggle')<CR>
+		let g:NERDShutUp=1
+
+		let b:match_ignorecase = 1
 	" }
 
-	" SnipMate {
-		" Setting the author var
-		let g:snips_author = 'Steve Francia <steve.francia@gmail.com>'
-		" Shortcut for reloading snippets, useful when developing
-		nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
-	" }
 " }
-
-
-
-
 
 " GUI Settings {
 	" GVIM- (here instead of .gvimrc)
