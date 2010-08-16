@@ -1,10 +1,9 @@
 " Modeline and Notes {
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
-" 	This is the personal .vimrc file of Derek Odegard.
+" 	Derek Odegard's .vimrc file!!!
 "
-" 	It is based on Steve Francia's .vimrc 
-" 	http://spf13.com
+" 	Based on Steve Francia's .vimrc [http://spf13.com]
 " }
 
 " Setup Bundle Support {
@@ -31,6 +30,7 @@
 	set diffopt=filler,iwhite
 	set shortmess+=filmnrxoOtT     	" abbrev. of messages (avoids 'hit enter')
 	" set spell 		 	     	" spell checking on
+	let mapleader=','
 	
 	" Setting up the directories {
 		set backup 						" backups are nice ...
@@ -103,7 +103,6 @@
 	"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 " }
 
-
 " File Types {
 
 augroup filetypedetect
@@ -112,8 +111,6 @@ augroup filetypedetect
 augroup END
 
 " }
-
-
 
 " Key Mappings {
 
@@ -136,8 +133,11 @@ augroup END
 	" Shortcuts
 	" Change Working Directory to that of the current file
     cmap cwd lcd %:p:h
-" }
 
+	nnoremap ' `
+	nnoremap ` '
+	
+" }
 
 " Plugins {
 
@@ -147,7 +147,7 @@ augroup END
 	" }
 
 	" command-t {
-		nmap <silent> <C-f> :CommandT<CR>
+		nmap <silent> <Leader>f :CommandT<CR>
 	" } 
 	
 	" PIV {
@@ -174,16 +174,16 @@ augroup END
 	" }
 	
 	" Ctags {
-		"set tags=./tags;/	
 		let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 		map <S-F1> :TlistToggle<Enter>
 	" }
 
-	" Misc { 
-		:map <C-F10> <Esc>:vsp<CR>:VTree<CR>
-		" map Control + F10 to Vtree
+	" NERDTree {
+		map <S-F2> :NERDTreeToggle<Enter>
+	" }
 
-		let g:checksyntax_auto = 0
+	" Misc { 
+		"let g:checksyntax_auto = 0
 
 		"comment out line(s) in visual mode
 		vmap  o  :call NERDComment(1, 'toggle')<CR>
@@ -195,11 +195,9 @@ augroup END
 " }
 
 " GUI Settings {
-	" GVIM- (here instead of .gvimrc)
 	if has('gui_running')
 		set guioptions-=T          	" remove the toolbar
 		set guioptions-=m
-		"set lines=40               	" 40 lines of text instead of 24,
 		set lines=300 columns=300
 		winpos 0 0
 		colorscheme jhlight
