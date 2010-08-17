@@ -31,6 +31,8 @@
 	set shortmess+=filmnrxoOtT     	" abbrev. of messages (avoids 'hit enter')
 	" set spell 		 	     	" spell checking on
 	let mapleader=','
+	set wildignore=*.o,*.obj,**/cache/**
+	
 	
 	" Setting up the directories {
 		set backup 						" backups are nice ...
@@ -136,6 +138,11 @@ augroup END
 
 	nnoremap ' `
 	nnoremap ` '
+
+	"command-t file finder
+	nmap <silent> <Leader>f :CommandT<CR>
+	map <silent> <Leader>t :TlistToggle<CR>
+	map <silent> <Leader>n :NERDTreeToggle<CR>
 	
 " }
 
@@ -146,10 +153,6 @@ augroup END
 		au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
 	" }
 
-	" command-t {
-		nmap <silent> <Leader>f :CommandT<CR>
-	" } 
-	
 	" PIV {
 		let g:DisableAutoPHPFolding = 0
 	" }
@@ -175,20 +178,15 @@ augroup END
 	
 	" Ctags {
 		let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-		map <S-F1> :TlistToggle<Enter>
-	" }
-
-	" NERDTree {
-		map <S-F2> :NERDTreeToggle<Enter>
 	" }
 
 	" Misc { 
 		"let g:checksyntax_auto = 0
 
 		"comment out line(s) in visual mode
-		vmap  o  :call NERDComment(1, 'toggle')<CR>
-		let g:NERDShutUp=1
+		"vmap o :call NERDComment(1, 'toggle')<CR>
 
+		let g:NERDShutUp=1
 		let b:match_ignorecase = 1
 	" }
 
