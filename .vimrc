@@ -144,6 +144,8 @@ augroup END
 	map <silent> <Leader>t :TlistToggle<CR>
 	map <silent> <Leader>n :NERDTreeToggle<CR>
 	
+	"Sudo to write
+	cmap w!! w !sudo tee % >/dev/null
 " }
 
 " Plugins {
