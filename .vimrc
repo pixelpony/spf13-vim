@@ -1,3 +1,5 @@
+set nocompatible 		" must be first line
+
 " Modeline and Notes {
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
@@ -13,7 +15,6 @@
 " }
 
 " Basics {
-	set nocompatible 		" must be first line
 " }
  
 " General {
@@ -24,7 +25,7 @@
 	set mouse=a					" automatically enable mouse usage
 	"set autochdir 				" always switch to the current file directory.. 
 	" not every vim is compiled with this, use the following line instead
-     "autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+    "autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 	scriptencoding utf-8
 	set autowrite
 	set diffopt=filler,iwhite
@@ -32,6 +33,7 @@
 	" set spell 		 	     	" spell checking on
 	let mapleader=','
 	set wildignore=*.o,*.obj,**/cache/**
+	let &t_Co=256
 	
 	
 	" Setting up the directories {
@@ -50,7 +52,8 @@
 " }
 
 " Vim UI {
-	colorscheme buttercream
+	"colorscheme buttercream
+	colorscheme zenburn
 	set tabpagemax=15 				" only show 15 tabs
 	set showmode                   	" display the current mode
 
@@ -98,7 +101,7 @@
 	set nowrap                     	" wrap long lines
 	set autoindent                 	" indent at the same level of the previous line
 	set shiftwidth=4               	" use indents of 4 spaces
-	set noexpandtab 	       		" tabs are tabs, not spaces
+	set noexpandtab    	       		" tabs are tabs, not spaces
 	set tabstop=4 					" an indentation every four columns
 	set matchpairs+=<:>            	" match, to be used with % 
 	set pastetoggle=<F12>          	" pastetoggle (sane indentation on pastes)
@@ -146,6 +149,20 @@ augroup END
 	
 	"Sudo to write
 	cmap w!! w !sudo tee % >/dev/null
+
+	"inoremap  <Up>     <NOP>
+	"inoremap  <Down>   <NOP>
+	"inoremap  <Left>   <NOP>
+	"inoremap  <Right>  <NOP>
+	"noremap   <Up>     <NOP>
+	"noremap   <Down>   <NOP>
+	"noremap   <Left>   <NOP>
+	"noremap   <Right>  <NOP>
+	"vnoremap   <Up>     <NOP>
+	"vnoremap   <Down>   <NOP>
+	"vnoremap   <Left>   <NOP>
+	"vnoremap   <Right>  <NOP>
+
 " }
 
 " Plugins {
@@ -156,7 +173,7 @@ augroup END
 	" }
 
 	" PIV {
-		let g:DisableAutoPHPFolding = 0
+	"	let g:DisableAutoPHPFolding = 0
 	" }
 	
 	" Supertab {
@@ -214,4 +231,4 @@ augroup END
 	endif
 " }
 
-cd ~/apps/www
+cd ~/apps/opensky
