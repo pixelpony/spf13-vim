@@ -50,7 +50,8 @@
 " }
 
 " Vim UI {
-	colorscheme buttercream
+	colorscheme zenburn
+	"colorscheme buttercream
 	set tabpagemax=15 				" only show 15 tabs
 	set showmode                   	" display the current mode
 
@@ -144,6 +145,9 @@ augroup END
 	map <silent> <Leader>t :TlistToggle<CR>
 	map <silent> <Leader>n :NERDTreeToggle<CR>
 	
+	" Gundo toggle
+	nnoremap <F5> :GundoToggle<CR>
+
 	"Sudo to write
 	cmap w!! w !sudo tee % >/dev/null
 " }
@@ -200,7 +204,7 @@ augroup END
 		set guioptions-=m
 		set lines=300 columns=300
 		winpos 0 0
-		colorscheme jhlight
+		#colorscheme jhlight
 		set mousehide
 		set guicursor=a:blinkwait60000-blinkon600-blinkoff300
 	endif
@@ -214,4 +218,4 @@ augroup END
 	endif
 " }
 
-cd ~/apps/www
+cd ~/apps/opensky
