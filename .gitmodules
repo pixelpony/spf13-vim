@@ -1,6 +1,3 @@
-[submodule ".vim/bundle/piv"]
-	path = .vim/bundle/piv
-	url = http://github.com/spf13/PIV.git
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
@@ -19,9 +16,6 @@
 [submodule ".vim/bundle/surround"]
 	path = .vim/bundle/surround
 	url = http://github.com/tpope/vim-surround.git
-[submodule ".vim/bundle/PIV"]
-	path = .vim/bundle/PIV
-	url = http://github.com/spf13/PIV.git
 [submodule ".vim/bundle/gundo"]
 	path = .vim/bundle/gundo
 	url = http://github.com/sjl/gundo.vim.git
