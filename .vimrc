@@ -1,7 +1,7 @@
 set nocompatible 		" must be first line
 
 " Modeline and Notes {
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
+" vim:  foldlevel=0 foldmethod=marker spell:
 "
 " 	Derek Odegard's .vimrc file!!!
 "
@@ -20,6 +20,7 @@ set nocompatible 		" must be first line
 " General {
 	filetype plugin indent on  	" Automatically detect file types.
 	set foldmethod=marker
+	set foldmarker={{{,}}}
 	set vb                      " visual bell
 	syntax on 					" syntax highlighting
 	set mouse=a					" automatically enable mouse usage
@@ -139,13 +140,24 @@ augroup END
 	" Change Working Directory to that of the current file
     cmap cwd lcd %:p:h
 
-	nnoremap ' `
-	nnoremap ` '
+	" WHAT THE HELL IS THIS????
+	"nnoremap ' `
+	"nnoremap ` '
+
+	"nnoremap ` <C-^>
+	nnoremap <Leader>, <C-^>
+
+	"Select (linewise) the text you just pasted 
+	nnoremap <leader>v V`]
 
 	"command-t file finder
 	nmap <silent> <Leader>f :CommandT<CR>
 	map <silent> <Leader>t :TlistToggle<CR>
-	map <silent> <Leader>n :NERDTreeToggle<CR>
+
+	"NERDtree
+	nnoremap <F2> :NERDTreeToggle<CR>
+
+	"map <silent> <Leader>n :NERDTreeToggle<CR>
 	
 	" Gundo toggle
 	nnoremap <F5> :GundoToggle<CR>
@@ -165,6 +177,15 @@ augroup END
 	"vnoremap   <Down>   <NOP>
 	"vnoremap   <Left>   <NOP>
 	"vnoremap   <Right>  <NOP>
+
+	" moving to next search result moves search hit to vertical center of screen
+	nnoremap n nzz
+	nnoremap N Nzz
+	nnoremap * *zz
+	nnoremap # #zz
+	nnoremap g* g*zz
+	nnoremap g# g#zz
+
 
 " }
 
@@ -198,6 +219,14 @@ augroup END
 		highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 	" }
 	
+	" NERDTree {
+		let g:NERDShutUp=1
+		let NERDChristmasTree=1
+		let NERDChristmasTree=1
+		let NERDTreeQuitOnOpen=1
+		let NERDTreeShowBookmarks=1
+	" }
+
 	" Ctags {
 		let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 	" }
@@ -208,7 +237,6 @@ augroup END
 		"comment out line(s) in visual mode
 		"vmap o :call NERDComment(1, 'toggle')<CR>
 
-		let g:NERDShutUp=1
 		let b:match_ignorecase = 1
 	" }
 
@@ -234,4 +262,4 @@ augroup END
 	endif
 " }
 
-cd ~/apps/opensky
+cd ~/apps/opensky/src/OpenSky/Bundle/MainBundle/Resources/views
